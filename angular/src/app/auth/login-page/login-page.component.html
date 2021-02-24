@@ -1,0 +1,24 @@
+<form class="app-login-form">
+  <div class="form-group">
+    <label>Эл. почта
+      <input type="email"
+             name="email"
+             class="form-control"
+             [(ngModel)]="email"
+             aria-describedby="emailHelp"
+             placeholder="Enter email" />
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>Пароль
+      <input type="password"
+             name="password"
+             class="form-control"
+             [(ngModel)]="password"
+             placeholder="Password">
+    </label>
+  </div>
+
+  <button type="submit" class="btn btn-outline-success" (click)="loginButtonHandler()">Войти</button>
+</form>
