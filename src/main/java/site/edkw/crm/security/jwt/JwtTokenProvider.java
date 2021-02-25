@@ -63,6 +63,9 @@ public class JwtTokenProvider {
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);
         }
+        if(req.getParameter("key") != null){
+            return req.getParameter("key");
+        }
         return null;
     }
 

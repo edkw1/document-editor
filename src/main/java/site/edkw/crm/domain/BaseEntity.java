@@ -24,29 +24,29 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonView(Views.fullInfo.class)
+    @JsonView(Views.FullInfo.class)
     @CreatedBy
     @ManyToOne
     @JoinColumn(name = "creator_id", updatable = false)
     private User creator;
 
-    @JsonView(Views.fullInfo.class)
+    @JsonView(Views.FullInfo.class)
     @CreatedDate
     @Column(name = "created")
     private Date created;
 
-    @JsonView(Views.fullInfo.class)
+    @JsonView(Views.FullInfo.class)
     @LastModifiedBy
     @ManyToOne
     @JoinColumn(name = "modifier_id")
     private User modifier;
 
-    @JsonView(Views.fullInfo.class)
+    @JsonView(Views.FullInfo.class)
     @LastModifiedDate
     @Column(name = "modified")
     private Date modified;
 
-    @JsonView(Views.fullInfo.class)
+    @JsonView(Views.FullInfo.class)
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;

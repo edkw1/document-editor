@@ -1,5 +1,6 @@
 package site.edkw.crm.domain;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -10,12 +11,17 @@ import javax.persistence.Table;
 @Table(name = "files")
 @Data
 public class File extends BaseEntity {
+    @JsonView(Views.File.class)
     @Column(name = "name")
-    String name;
+    private String name;
 
     @Column(name = "path")
-    String path;
+    private String path;
 
+    @JsonView(Views.File.class)
     @Column(name = "size")
-    long size;
+    private long size;
+
+    @Column(name = "type")
+    private String type;
 }

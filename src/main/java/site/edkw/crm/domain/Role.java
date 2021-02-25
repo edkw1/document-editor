@@ -18,7 +18,7 @@ public class Role{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonView(Views.shortInfo.class)
+    @JsonView(Views.ShortInfo.class)
     @ToString.Include
     @Column(name = "name")
     private String name;

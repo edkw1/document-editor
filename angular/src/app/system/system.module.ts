@@ -1,4 +1,4 @@
-import {NgModule} from "@angular/core";
+import {NgModule, Provider} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import { DocListPageComponent } from './doc-list-page/doc-list-page.component';

@@ -11,31 +11,31 @@ import java.util.List;
 @Data
 public class User extends BaseEntity {
 
-    @JsonView(Views.shortInfo.class)
+    @JsonView(Views.ShortInfo.class)
     @Column(name = "username")
     private String username;
 
-    @JsonView(Views.shortInfo.class)
+    @JsonView(Views.ShortInfo.class)
     @Column(name = "password")
     private String password;
 
-    @JsonView(Views.shortInfo.class)
+    @JsonView(Views.ShortInfo.class)
     @Column(name = "first_name")
     private String firstName;
 
-    @JsonView(Views.shortInfo.class)
+    @JsonView(Views.ShortInfo.class)
     @Column(name = "last_name")
     private String lastName;
 
-    @JsonView(Views.shortInfo.class)
+    @JsonView(Views.ShortInfo.class)
     @Column(name = "email")
     private String email;
 
-    @JsonView(Views.shortInfo.class)
+    @JsonView(Views.ShortInfo.class)
     @Column(name = "phone")
     private String phone;
 
-    @JsonView(Views.shortInfo.class)
+    @JsonView(Views.ShortInfo.class)
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",

@@ -16,7 +16,7 @@ import site.edkw.crm.security.jwt.JwtTokenProvider;
 import site.edkw.crm.service.UserService;
 
 @RestController
-@CrossOrigin(origins = {"*"})
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/api/v1/auth/")
 public class AuthRestController {
     private final AuthenticationManager authenticationManager;
@@ -59,7 +59,7 @@ public class AuthRestController {
     }
 
 
-    @JsonView(Views.shortInfo.class)
+    @JsonView(Views.ShortInfo.class)
     @PostMapping("register")
     public User registerUser(@RequestBody User user){
         return userService.register(user);

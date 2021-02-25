@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import site.edkw.crm.domain.User;
+import site.edkw.crm.service.UserService;
 
 import javax.persistence.EntityManagerFactory;
 
@@ -14,14 +15,16 @@ import javax.persistence.EntityManagerFactory;
 @EnableJpaAuditing(auditorAwareRef="auditorProvider")
 public class PersistenceConfig {
     private final EntityManagerFactory entityManagerFactory;
+    private final UserService userService;
 
-    public PersistenceConfig(EntityManagerFactory entityManagerFactory) {
+    public PersistenceConfig(EntityManagerFactory entityManagerFactory, UserService userService) {
         this.entityManagerFactory = entityManagerFactory;
+        this.userService = userService;
     }
 
     @Bean
     AuditorAware<User> auditorProvider() {
-        return new SpringSecurityAuditorAware();
+        return new SpringSecurityAuditorAware(userService);
     }
 
 

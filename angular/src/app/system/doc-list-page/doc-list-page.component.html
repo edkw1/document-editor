@@ -1,1 +1,26 @@
-<p>doc-list-page works!</p>
+<div class="form-group">
+  <div class="input-group upload-form">
+    <div class="custom-file">
+      <input type="file"
+             class="custom-file-input"
+             id="file"
+             (change)="handleFileInput($event)"
+      >
+      <label class="custom-file-label" for="file">Choose file</label>
+    </div>
+    <div class="input-group-append">
+      <button type="button" class="btn btn-primary" (click)="handleFileUpload()">Upload</button>
+    </div>
+  </div>
+</div>
+
+
+<ul class="list-group" *ngIf="files.length">
+  <li class="list-group-item d-flex justify-content-between align-items-center"
+      *ngFor="let f of files">
+    {{f.name}} ({{f.size}}KB)
+    <a [href]="downloadUrl(f)">
+      Скачать
+    </a>
+  </li>
+</ul>
