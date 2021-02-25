@@ -19,8 +19,13 @@
   <li class="list-group-item d-flex justify-content-between align-items-center"
       *ngFor="let f of files">
     {{f.name}} ({{f.size}}KB)
-    <a [href]="downloadUrl(f)">
-      Скачать
-    </a>
+    <span>
+        <a [href]="downloadUrl(f)">
+          Download
+        </a>
+        <a href="#" (click)="deleteFile(f); $event.preventDefault()">
+          Remove
+        </a>
+    </span>
   </li>
 </ul>

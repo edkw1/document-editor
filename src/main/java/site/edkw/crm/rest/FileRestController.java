@@ -62,4 +62,9 @@ public class FileRestController {
     public File uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
         return fileService.storeFile(file);
     }
+
+    @DeleteMapping("{id}")
+    public void deleteFile(@PathVariable("id") long id) throws FileNotFoundException {
+        fileService.deleteFile(id);
+    }
 }

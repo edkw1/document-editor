@@ -56,7 +56,7 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public List<File> getAvailableFilesList() {
-        return fileRepository.findAll();
+        return fileRepository.findAllByStatus(Status.ACTIVE);
     }
 
     @Override
@@ -64,4 +64,19 @@ public class FileServiceImpl implements FileService {
         return fileRepository.findById(id).orElseThrow(FileNotFoundException::new);
     }
 
+
+    public void deleteFile(long id) throws FileNotFoundException{
+        String username = ((JwtUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+
+        log.warn("IN deleteFile user {} try to remove file {}", username, id);
+
+        File file = fileRepository.findById(id).orElseThrow(FileNotFoundException::new);
+        if(file.getStatus().equals(Status.DELETED)){
+            throw new FileNotFoundException();
+        }
+
+        file.setStatus(Status.DELETED);
+        fileRepository.save(file);
+        log.info("IN deleteFile removed file {} ({}) by user {}", file.getPath(), file.getId(), username);
+    }
 }

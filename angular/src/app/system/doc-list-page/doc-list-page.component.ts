@@ -37,5 +37,13 @@ export class DocListPageComponent implements OnInit{
   downloadUrl({id}) {
     return this.fs.getDownloadFileUrl(id)
   }
+
+  deleteFile({id, name}) {
+    if(confirm(`Are you sure want to remove file "${name}"?`)){
+      this.fs.deleteFile(id).subscribe(_ => {
+        this.files = this.files.filter(f => f.id !== id)
+      })
+    }
+  }
 }
 

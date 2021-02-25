@@ -22,6 +22,10 @@ export class FileService {
     return this.http.post(`${environment.host+this.API_PATH}`, formData);
   }
 
+  deleteFile(id){
+    return this.http.delete(`${environment.host+this.API_PATH}/${id}`)
+  }
+
   fetchFilesList(): Observable<FileInfo[]> {
     return this.http.get<FileInfo[]>(`${environment.host+this.API_PATH}`);
   }

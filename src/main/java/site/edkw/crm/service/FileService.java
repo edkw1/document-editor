@@ -11,4 +11,5 @@ public interface FileService {
     File storeFile(MultipartFile file) throws IOException;
     List<File> getAvailableFilesList();
     File getFileInfo(long id) throws FileNotFoundException;
+    void deleteFile(long id) throws FileNotFoundException;
 }
