@@ -34,6 +34,7 @@ public class FileRestController {
         return fileService.getAvailableFilesList();
     }
 
+    @JsonView(Views.File.class)
     @GetMapping("{id}")
     public File getFileInfo(@PathVariable("id") long id) throws FileNotFoundException {
         return fileService.getFileInfo(id);

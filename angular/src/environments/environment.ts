@@ -6,7 +6,8 @@ import {Environment} from "./interface";
 
 export const environment: Environment = {
   production: false,
-  host: `http://localhost:8008`
+  host: `http://192.168.11.241:8008`,
+  docServer: 'http://192.168.11.241:8001'
 };
 
 /*

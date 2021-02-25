@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FileService} from "../shared/services/file.service";
 import {FileInfo} from "../shared/model/file-info.model";
+import * as FileSize from "filesize";
 
 @Component({
   selector: 'app-doc-list-page',
@@ -10,6 +11,7 @@ import {FileInfo} from "../shared/model/file-info.model";
 export class DocListPageComponent implements OnInit{
   files: FileInfo[] = []
   fileToUpload: File
+  FileSize = FileSize
 
   constructor(
     private fs:FileService
@@ -21,9 +23,9 @@ export class DocListPageComponent implements OnInit{
   }
 
   handleFileUpload(){
-    this.fs.uploadFile(this.fileToUpload).subscribe(data => {
+    this.fs.uploadFile(this.fileToUpload).subscribe(fileInfo => {
       this.fileToUpload = null
-      console.log('successfull loaded');
+      this.files.push(fileInfo)
     })
   }
 

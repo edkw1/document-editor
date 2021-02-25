@@ -31,6 +31,10 @@ export class FileService {
   }
 
   getDownloadFileUrl(id): string{
-    return `${environment.host+this.API_PATH}/${id}/download?key=${this.authService.token}`
+    return `${environment.host+this.API_PATH}/${id}/download?key=${this.authService.token}`;
+  }
+
+  getFileInfo(id: number): Observable<FileInfo> {
+    return this.http.get<FileInfo>(`${environment.host+this.API_PATH}/${id}`);
   }
 }

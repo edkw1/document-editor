@@ -18,10 +18,16 @@
 <ul class="list-group" *ngIf="files.length">
   <li class="list-group-item d-flex justify-content-between align-items-center"
       *ngFor="let f of files">
-    {{f.name}} ({{f.size}}KB)
+    {{f.name}} ({{FileSize(f.size*1024)}})
     <span>
         <a [href]="downloadUrl(f)">
           Download
+        </a>
+        <a [routerLink]="['/', 'system', 'view', f.id]">
+          View
+        </a>
+        <a [routerLink]="['/', 'system', 'edit', f.id]">
+          Edit
         </a>
         <a href="#" (click)="deleteFile(f); $event.preventDefault()">
           Remove
