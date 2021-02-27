@@ -34,9 +34,6 @@ export class DocListPageComponent implements OnInit{
     this.fs.fetchFilesList().subscribe(files => {
       this.files = files
     })
-    this.fs.test().subscribe(t => {
-      console.log(t);
-    })
   }
 
   downloadUrl({id}) {

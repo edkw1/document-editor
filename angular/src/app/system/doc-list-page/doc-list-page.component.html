@@ -1,12 +1,12 @@
 <div class="form-group">
   <div class="input-group upload-form">
-    <div class="custom-fileInfo">
-      <input type="fileInfo"
-             class="custom-fileInfo-input"
-             id="fileInfo"
+    <div class="custom-file">
+      <input type="file"
+             class="custom-file-input"
+             id="file"
              (change)="handleFileInput($event)"
       >
-      <label class="custom-fileInfo-label" for="fileInfo">Choose fileInfo</label>
+      <label class="custom-file-label" for="file">Choose file</label>
     </div>
     <div class="input-group-append">
       <button type="button" class="btn btn-primary" (click)="handleFileUpload()">Upload</button>
