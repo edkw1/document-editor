@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "files")
 @Data
-public class File extends BaseEntity {
+public class FileInfo extends BaseEntity {
     @JsonView(Views.File.class)
     @Column(name = "name")
     private String name;
@@ -24,4 +24,7 @@ public class File extends BaseEntity {
 
     @Column(name = "type")
     private String type;
+
+    @Column(name = "editor_key")
+    private String editorKey;
 }

@@ -15,7 +15,7 @@
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="size" type="BIGINT">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="type" type="VARCHAR(100)">
                 <constraints nullable="false"/>
@@ -40,5 +40,12 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+    </changeSet>
+    <changeSet id="1.0.1" author="edkw">
+        <addColumn tableName="files">
+            <column name="editor_key" type="VARCHAR(128)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
     </changeSet>
 </databaseChangeLog>

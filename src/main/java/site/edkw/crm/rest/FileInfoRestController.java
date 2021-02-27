@@ -8,9 +8,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import site.edkw.crm.domain.File;
+import site.edkw.crm.docserver.domain.config.DocConfig;
+import site.edkw.crm.domain.FileInfo;
 import site.edkw.crm.domain.Views;
-import site.edkw.crm.service.FileService;
+import site.edkw.crm.service.FileInfoService;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,52 +21,57 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/files")
-public class FileRestController {
-    private final FileService fileService;
+public class FileInfoRestController {
+    private final FileInfoService fileInfoService;
 
-    public FileRestController(FileService fileService) {
-        this.fileService = fileService;
+    public FileInfoRestController(FileInfoService fileInfoService) {
+        this.fileInfoService = fileInfoService;
     }
 
 
     @JsonView(Views.File.class)
     @GetMapping
-    public List<File> getAllFiles(){
-        return fileService.getAvailableFilesList();
+    public List<FileInfo> getAllFiles(){
+        return fileInfoService.getAvailableFilesList();
     }
 
     @JsonView(Views.File.class)
     @GetMapping("{id}")
-    public File getFileInfo(@PathVariable("id") long id) throws FileNotFoundException {
-        return fileService.getFileInfo(id);
+    public FileInfo getFileInfo(@PathVariable("id") long id) throws FileNotFoundException {
+        return fileInfoService.getFileInfo(id);
     }
 
 
     @GetMapping("{id}/download")
     public ResponseEntity<Resource> getFile(@PathVariable("id") long id) throws FileNotFoundException {
-        File file = fileService.getFileInfo(id);
+        FileInfo fileInfo = fileInfoService.getFileInfo(id);
 
         ContentDisposition contentDisposition = ContentDisposition.builder("attachment")
-                .filename(file.getName(), StandardCharsets.UTF_8)
+                .filename(fileInfo.getName(), StandardCharsets.UTF_8)
                 .build();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentDisposition(contentDisposition);
-        headers.set(HttpHeaders.CONTENT_TYPE, file.getType());
+        headers.set(HttpHeaders.CONTENT_TYPE, fileInfo.getType());
 
         return ResponseEntity.ok()
                 .headers(headers)
-                .body(new FileSystemResource(file.getPath()));
+                .body(new FileSystemResource(fileInfo.getPath()));
+    }
+
+    @GetMapping("{id}/edit")
+    public DocConfig editFile(@PathVariable("id") long id){
+        return new DocConfig();
     }
 
 
     @JsonView(Views.File.class)
     @PostMapping
-    public File uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
-        return fileService.storeFile(file);
+    public FileInfo uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
+        return fileInfoService.storeFile(file);
     }
 
     @DeleteMapping("{id}")
     public void deleteFile(@PathVariable("id") long id) throws FileNotFoundException {
-        fileService.deleteFile(id);
+        fileInfoService.deleteFile(id);
     }
 }

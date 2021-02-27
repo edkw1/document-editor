@@ -1,9 +1,6 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
-import {environment} from "../../../environments/environment";
-import {AuthService} from "../../auth/shared/services/auth.service";
 import {ActivatedRoute} from "@angular/router";
 import {FileService} from "../shared/services/file.service";
-import {FileInfo} from "../shared/model/file-info.model";
 
 
 declare let DocsAPI: any;
@@ -35,7 +32,7 @@ export class DocEditPageComponent implements OnInit, AfterViewInit, OnDestroy {
         document: {
           fileType: 'docx',
           title: fileInfo.name,
-          url: this.fs.getDownloadFileUrl(fileInfo.id)
+          url: this.fs.getDownloadFileUrl(fileInfo.id),
         },
         documentType: 'word',
         width: '100%',
@@ -43,7 +40,7 @@ export class DocEditPageComponent implements OnInit, AfterViewInit, OnDestroy {
         editorConfig: {
           mode: view ? 'view' : 'edit',
           lang: 'ru',
-          //callbackUrl: 'http://192.168.56.1/test',
+          callbackUrl: `${this.fs.getCallbackUrl()}`,
           user: {
             id: '1',
             name: 'user'

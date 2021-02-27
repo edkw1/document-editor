@@ -34,7 +34,15 @@ export class FileService {
     return `${environment.host+this.API_PATH}/${id}/download?key=${this.authService.token}`;
   }
 
+  getCallbackUrl(): string{
+    return `${environment.host}/api/v1/docserver?key=${this.authService.token}`;
+  }
+
   getFileInfo(id: number): Observable<FileInfo> {
     return this.http.get<FileInfo>(`${environment.host+this.API_PATH}/${id}`);
+  }
+
+  getConfigForEditDocument(id) {
+    return this.http.get(`${environment.host+this.API_PATH}/${id}/edit`);
   }
 }
