@@ -7,4 +7,5 @@ public class Document {
     private String fileType;
     private String title;
     private String url;
+    private String key;
 }

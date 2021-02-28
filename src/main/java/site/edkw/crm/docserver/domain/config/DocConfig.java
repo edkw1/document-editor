@@ -10,5 +10,5 @@ public class DocConfig {
     private String documentType;
     private String width = "100%";
     private String height = "97%";
-    private EditorConfig editorConfig = new EditorConfig();
+    private EditorConfig editorConfig;
 }

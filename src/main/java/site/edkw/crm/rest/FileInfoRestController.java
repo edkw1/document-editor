@@ -8,11 +8,15 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import site.edkw.crm.docserver.UnsupportedFileException;
 import site.edkw.crm.docserver.domain.config.DocConfig;
+import site.edkw.crm.docserver.service.DocService;
 import site.edkw.crm.domain.FileInfo;
 import site.edkw.crm.domain.Views;
+import site.edkw.crm.security.jwt.JwtTokenProvider;
 import site.edkw.crm.service.FileInfoService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -23,9 +27,15 @@ import java.util.List;
 @RequestMapping("/api/v1/files")
 public class FileInfoRestController {
     private final FileInfoService fileInfoService;
+    private final DocService docService;
+    private final JwtTokenProvider tokenProvider;
 
-    public FileInfoRestController(FileInfoService fileInfoService) {
+    public FileInfoRestController(FileInfoService fileInfoService,
+                                  DocService docService,
+                                  JwtTokenProvider tokenProvider) {
         this.fileInfoService = fileInfoService;
+        this.docService = docService;
+        this.tokenProvider = tokenProvider;
     }
 
 
@@ -59,8 +69,18 @@ public class FileInfoRestController {
     }
 
     @GetMapping("{id}/edit")
-    public DocConfig editFile(@PathVariable("id") long id){
-        return new DocConfig();
+    public DocConfig getConfigForEditingFile(@PathVariable("id") long id,
+                                             HttpServletRequest request)
+            throws FileNotFoundException, UnsupportedFileException {
+        return docService.createConfigForEditingDocument(id, "edit", tokenProvider.resolveToken(request));
+    }
+
+    @GetMapping("{id}/view")
+    public DocConfig getConfigForViewingFile(@PathVariable("id") long id,
+                                             HttpServletRequest request)
+            throws FileNotFoundException, UnsupportedFileException {
+
+        return docService.createConfigForEditingDocument(id, "view", tokenProvider.resolveToken(request));
     }
 
 

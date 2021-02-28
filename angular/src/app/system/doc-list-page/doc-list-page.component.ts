@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FileService} from "../shared/services/file.service";
+import {FileService} from "../shared/service/file.service";
 import {FileInfo} from "../shared/model/file-info.model";
 import * as FileSize from "filesize";
 

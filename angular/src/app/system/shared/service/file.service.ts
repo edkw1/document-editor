@@ -42,7 +42,11 @@ export class FileService {
     return this.http.get<FileInfo>(`${environment.host+this.API_PATH}/${id}`);
   }
 
-  getConfigForEditDocument(id) {
+  getConfigForEditingDocument(id) {
     return this.http.get(`${environment.host+this.API_PATH}/${id}/edit`);
+  }
+
+  getConfigForViewingDocument(id) {
+    return this.http.get(`${environment.host+this.API_PATH}/${id}/view`);
   }
 }
