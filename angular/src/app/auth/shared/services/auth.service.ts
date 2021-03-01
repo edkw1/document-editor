@@ -62,8 +62,9 @@ export class AuthService {
 
 
   private handleError(error: HttpErrorResponse) {
-    console.log('Auth error', error)
-    return throwError(error)
+    console.log('Auth error', error);
+    this.logout();
+    return throwError(error);
   }
 
   setToken(response: AuthResponse) {

@@ -8,13 +8,18 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
-        <a [routerLink]="['/system/docs']" class="nav-link" >Documents
-          <span class="sr-only">(current)</span>
+        <a [routerLink]="['/system/docs']" class="nav-link" >
+          Documents
         </a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a [routerLink]="['/system/edit']" class="nav-link" >Editor
-          <span class="sr-only">(current)</span>
+        <a [routerLink]="['/system/edit']" class="nav-link" >
+          Editor
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a href="/logout" (click)="logout(); $event.preventDefault()" class="nav-link" >
+          Logout
         </a>
       </li>
     </ul>

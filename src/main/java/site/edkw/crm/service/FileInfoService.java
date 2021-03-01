@@ -11,6 +11,7 @@ public interface FileInfoService {
     FileInfo storeFile(MultipartFile file) throws IOException;
     List<FileInfo> getAvailableFilesList();
     FileInfo getFileInfo(long id) throws FileNotFoundException;
+    FileInfo getFileInfoByEditorKey(String key) throws FileNotFoundException;
     void deleteFile(long id) throws FileNotFoundException;
     void saveFileInfo(FileInfo fileInfo);
 }

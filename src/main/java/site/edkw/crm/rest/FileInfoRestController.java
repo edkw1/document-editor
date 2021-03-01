@@ -28,14 +28,11 @@ import java.util.List;
 public class FileInfoRestController {
     private final FileInfoService fileInfoService;
     private final DocService docService;
-    private final JwtTokenProvider tokenProvider;
 
     public FileInfoRestController(FileInfoService fileInfoService,
-                                  DocService docService,
-                                  JwtTokenProvider tokenProvider) {
+                                  DocService docService) {
         this.fileInfoService = fileInfoService;
         this.docService = docService;
-        this.tokenProvider = tokenProvider;
     }
 
 
@@ -72,7 +69,7 @@ public class FileInfoRestController {
     public DocConfig getConfigForEditingFile(@PathVariable("id") long id,
                                              HttpServletRequest request)
             throws FileNotFoundException, UnsupportedFileException {
-        return docService.createConfigForEditingDocument(id, "edit", tokenProvider.resolveToken(request));
+        return docService.createConfigForEditingDocument(id, "edit", request);
     }
 
     @GetMapping("{id}/view")
@@ -80,7 +77,7 @@ public class FileInfoRestController {
                                              HttpServletRequest request)
             throws FileNotFoundException, UnsupportedFileException {
 
-        return docService.createConfigForEditingDocument(id, "view", tokenProvider.resolveToken(request));
+        return docService.createConfigForEditingDocument(id, "view", request);
     }
 
 

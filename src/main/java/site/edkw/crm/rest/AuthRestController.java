@@ -38,7 +38,6 @@ public class AuthRestController {
     public AuthJWTResponseDto login(@RequestBody AuthCredentialsRequestDto requestDto) {
         try {
             String username = requestDto.getUsername();
-            System.out.println(passwordEncoder.encode(requestDto.getPassword()));
 
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, requestDto.getPassword()));
             User user = userService.findByUsername(username);

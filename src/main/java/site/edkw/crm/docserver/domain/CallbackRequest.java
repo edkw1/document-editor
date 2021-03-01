@@ -15,5 +15,6 @@ public class CallbackRequest{
     private String userdata;
     private String[] users;
     private String lastsave;
+    private boolean notmodified;
 
 }

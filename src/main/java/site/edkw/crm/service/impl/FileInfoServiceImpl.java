@@ -63,14 +63,20 @@ public class FileInfoServiceImpl implements FileInfoService {
         return fileInfoRepository.findById(id).orElseThrow(FileNotFoundException::new);
     }
 
+    @Override
+    public FileInfo getFileInfoByEditorKey(String key) throws FileNotFoundException {
+        return fileInfoRepository.findByEditorKey(key)
+                .orElseThrow(() -> new FileNotFoundException("File with same key (" + key + ") not found"));
+    }
 
-    public void deleteFile(long id) throws FileNotFoundException{
+
+    public void deleteFile(long id) throws FileNotFoundException {
         String username = ((JwtUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 
         log.warn("IN deleteFile user {} try to remove file {}", username, id);
 
         FileInfo fileInfo = fileInfoRepository.findById(id).orElseThrow(FileNotFoundException::new);
-        if(fileInfo.getStatus().equals(Status.DELETED)){
+        if (fileInfo.getStatus().equals(Status.DELETED)) {
             throw new FileNotFoundException();
         }
 
@@ -80,7 +86,7 @@ public class FileInfoServiceImpl implements FileInfoService {
     }
 
     @Override
-    public void saveFileInfo(FileInfo fileInfo){
+    public void saveFileInfo(FileInfo fileInfo) {
         fileInfoRepository.save(fileInfo);
     }
 }

@@ -25,9 +25,10 @@ public class CallbackHandlerController {
     public CallbackResponse callbackHandler(@RequestBody HashMap<String, Object> data) throws IOException {
         CallbackRequest callbackRequest = null;
         ObjectMapper mapper = new ObjectMapper();
-
         String str = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(data);
         System.out.println(str);
+
+        callbackRequest = mapper.readValue(str, CallbackRequest.class);
         return docService.processCallback(callbackRequest);
     }
 
