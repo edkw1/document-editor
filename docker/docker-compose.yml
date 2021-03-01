@@ -22,5 +22,4 @@ services:
     image: onlyoffice/documentserver
     restart: always
     ports:
-    - 8001:80
-
+      - 8001:80

@@ -4,6 +4,7 @@
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <changeSet id="1.0.0" author="edkw">
        <insert tableName="users">
+           <column name="id" value="1" />
            <column name="username" value="admin"/>
            <column name="password" value="$2a$10$Qaa5qNZUTa2hOUc4kxL7OeEHsQv.JqixR.BalsGKclDGZ5wk4EcIm"/> <!--password: admin-->
            <column name="first_name" value="admin"/>
@@ -15,6 +16,20 @@
         <insert tableName="user_roles">
             <column name="user_id" value="1"/>
             <column name="role_id" value="2"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="2" />
+            <column name="username" value="user"/>
+            <column name="password" value="$2a$10$Qaa5qNZUTa2hOUc4kxL7OeEHsQv.JqixR.BalsGKclDGZ5wk4EcIm"/> <!--password: admin-->
+            <column name="first_name" value="user"/>
+            <column name="last_name" value="user"/>
+            <column name="email" value="user@user.ru"/>
+            <column name="phone" value="+123422789"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" value="2"/>
+            <column name="role_id" value="1"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

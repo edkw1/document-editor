@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  mobileCollapsed = true
 
   constructor(
     private authService: AuthService,

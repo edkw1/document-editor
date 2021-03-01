@@ -1,3 +1,9 @@
-.logout-link{
-  right: 0;
+.service-menu{
+  position: relative;
+  width: 100%;
+
+  &>li:last-child{
+    position: absolute;
+    right: 5px;
+  }
 }

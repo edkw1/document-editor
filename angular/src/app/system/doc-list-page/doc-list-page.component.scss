@@ -1,7 +1,15 @@
-.upload-form{
-  margin-top: 1rem;
+
+.sections {
+  max-width: 500px;
+
+  .upload-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
-a{
+
+a {
   margin-left: 15px;
 }
